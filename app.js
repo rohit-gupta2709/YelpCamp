@@ -21,7 +21,7 @@ const userRoutes = require('./routes/users');
 const campgroundRoutes = require('./routes/campgrounds');
 const reviewRoutes = require('./routes/reviews');
 const dbURL = process.env.DB_URL || 'mongodb://localhost:27017/yelp-camp';
-//'mongodb://localhost:27017/yelp-camp'
+// const dbURL = 'mongodb://localhost:27017/yelp-camp';
 mongoose.connect(dbURL, {
     useNewUrlParser: true,
     useCreateIndex: true,
@@ -58,15 +58,15 @@ const styleSrcUrls = [
     "https://kit-free.fontawesome.com/",
     "https://stackpath.bootstrapcdn.com/",
     "https://fonts.googleapis.com/",
+    "https://use.fontawesome.com/"
+];
+const connectSrcUrls = [];
+const fontSrcUrls = [
+    "https://cdnjs.cloudflare.com/",
+    "https://fonts.googleapis.com/",
     "https://use.fontawesome.com/",
+    "https://kit-free.fontawesome.com/",
 ];
-const connectSrcUrls = [
-    "https://api.mapbox.com/",
-    "https://a.tiles.mapbox.com/",
-    "https://b.tiles.mapbox.com/",
-    "https://events.mapbox.com/",
-];
-const fontSrcUrls = [];
 app.use(
     helmet.contentSecurityPolicy({
         directives: {
@@ -83,7 +83,7 @@ app.use(
                 "https://res.cloudinary.com/yelpimageasset/", //SHOULD MATCH YOUR CLOUDINARY ACCOUNT! 
                 "https://images.unsplash.com/",
             ],
-            fontSrc: ["'self'", ...fontSrcUrls],
+            fontSrc: ["'self'", "'unsafe-inline'", ...fontSrcUrls],
         },
     })
 );
